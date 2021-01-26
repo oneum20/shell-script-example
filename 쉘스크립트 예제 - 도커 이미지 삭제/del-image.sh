@@ -18,7 +18,7 @@ function listToLine(){
 #       Variables
 #===========================================
 IMAGE_PREFIX=${IMAGE_PREFIX:-}
-TMP_FILE_NAME=del-image.tmp
+TMP_FILE_NAME=del-target.tmp
 LIST_FILE_NAME=execlusion_list
 EXECLUSION_IMAGE_LIST="$(cat $LIST_FILE_NAME)"
 CURRENT_RUNNING_IMAGE=`docker ps --format="{{.Image}}"`
