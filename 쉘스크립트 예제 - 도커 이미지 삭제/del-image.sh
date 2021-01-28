@@ -18,7 +18,7 @@ function listToLine(){
 #       Variables
 #===========================================
 IMAGE_PREFIX=${IMAGE_PREFIX:-}
-TMP_FILE_NAME=del-target.tmp
+TMP_FILE_NAME=target.tmp
 LIST_FILE_NAME=execlusion_list
 EXECLUSION_IMAGE_LIST="$(cat $LIST_FILE_NAME)"
 CURRENT_RUNNING_IMAGE=`docker ps --format="{{.Image}}"`
@@ -51,9 +51,10 @@ DELETE_TARGET=`docker images --format="{{.Repository}}:{{.Tag}}" | grep -v -E "$
 echo "$DELETE_TARGET"
 
 
-
 # Delete images
+log "Delete images..."
+docker rmi -f $(echo $DELETE_TARGET)
 
 
 # Post Process
-
+rm -f $TMP_FILE_NAME
