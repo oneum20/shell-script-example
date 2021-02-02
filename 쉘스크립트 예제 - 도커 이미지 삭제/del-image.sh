@@ -27,32 +27,32 @@ CURRENT_RUNNING_IMAGE=`docker ps --format="{{.Image}}"`
 #===========================================
 # 	Process
 #===========================================
-log "Start the image deletion process..."
+log "Start the image deletion process..." >> ../../test.log
 
-log "Print all images..."
+log "Print all images..." >> ../../test.log
 docker images --format="{{.Repository}}:{{.Tag}}"
 
 
-log "Print execlusion_list..."
-echo "$EXECLUSION_IMAGE_LIST"
+log "Print execlusion_list..." >> ../../test.log
+echo "$EXECLUSION_IMAGE_LIST" >> ../../test.log
 echo "$EXECLUSION_IMAGE_LIST" > $TMP_FILE_NAME
 
 
-log "Current running images..."
+log "Current running images..." >> ../../test.log
 if [ ${#CURRENT_RUNNING_IMAGE} -gt 0 ]; then
   echo $CURRENT_RUNNING_IMAGE >> $TMP_FILE_NAME
 else
-  echo "Nothing running container"
+  echo "Nothing running container" >> ../../test.log
 fi;
 
 
-log "Print target images..."
+log "Print target images..." >> ../../test.log
 DELETE_TARGET=`docker images --format="{{.Repository}}:{{.Tag}}" | grep -v -E "$(listToLine $TMP_FILE_NAME)" `
-echo "$DELETE_TARGET"
+echo "$DELETE_TARGET" >> ../../test.log
 
 
 # Delete images
-log "Delete images..."
+log "Delete images..." >> ../../test.log
 docker rmi -f $(echo $DELETE_TARGET)
 
 
