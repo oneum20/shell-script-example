@@ -8,11 +8,11 @@ MSG=(
         "Error : Docker image name is required."
         "Usage : ${SCRIPT} <DOCKER IMAGE NAME> <Options>"
         "Options:"
-        "-a  \t\t If use this mode, print all vulnerabilities."
+        "  -a  \t  If use this mode, print all vulnerabilities."
 )
 
 # Usage
-[[ -z ${IMAGE} ]] && printf "%s\n" "${MSG[@]}" && exit 1
+[[ -z ${IMAGE} ]] && printf "%b\n" "${MSG[@]}" && exit 1
 
 printf "Container Scanning Target : ${IMAGE} \n\n"
 
