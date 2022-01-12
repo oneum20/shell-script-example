@@ -6,7 +6,7 @@ CONTAINER_NAME=${CONTAINER_NAME:-"trivy"}
 IMAGE=$1
 MSG=(
         "Error : Docker image name is required."
-        "Usage : ${SCRIPT} <DOCKER IMAGE NAME> <Options>"
+        "Usage : ${SCRIPT} [OPTIONS] DOCKER_IMAGE_NAME"
         "Options:"
         "  -a  \t  If use this mode, print all vulnerabilities."
 )
